@@ -1,6 +1,5 @@
 import { create } from "zustand";
-
-type ResourceType = "wood" | "stone" | "food"
+import type { ResourceType } from "../types/Map"
 
 type ResourceStoreType = {
     gold: number;
