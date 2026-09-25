@@ -3,3 +3,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.gameArea{
+  width: min(80vh, 80vw);
+  display: grid;
+  >div{
+    aspect-ratio: 1 / 1;
+    border: 1px solid white;
+  }
+}
+
+.water{ background: lightblue; }
+.grass{ background: lightgreen; }
+.stone{ background: lightgray; }
+.sand{ background: lightyellow; }
