@@ -9,11 +9,11 @@
   display: grid;
   >div{
     aspect-ratio: 1 / 1;
-    border: 1px solid white;
+    /* border: 1px solid white; */
   }
 }
 
-.water{ background: lightblue; }
-.grass{ background: lightgreen; }
-.stone{ background: lightgray; }
+.water{ background: rgb(0, 191, 255); }
+.grass{ background: green; }
+.stone{ background: gray; }
 .sand{ background: lightyellow; }
