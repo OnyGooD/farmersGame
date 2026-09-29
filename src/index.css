@@ -17,3 +17,7 @@
 .grass{ background: green; }
 .stone{ background: gray; }
 .sand{ background: lightyellow; }
+
+selectorButton{
+  font-size: 2rem;
+}

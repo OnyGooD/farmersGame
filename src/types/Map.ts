@@ -6,5 +6,4 @@ export type TileType = {
     ground: GroundType,
     building: BuildingType | null,
     resource: ResourceType | null
-
 }

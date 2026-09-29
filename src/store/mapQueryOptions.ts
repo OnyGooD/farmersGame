@@ -3,12 +3,14 @@ import type { TileType } from "../types/Map";
 import axios from "axios";
 
 const generateMap = async (): Promise<TileType[][]> => {
-    const response = await axios.post("https://2tcjmzzm-8000.euw.devtunnels.ms/map/generate/", {
-        size: 100,
-        seed: 42067,
-        seedCount: 6,
-        iterations: 10
-    });
+    // const response = await axios.post("https://2tcjmzzm-8000.euw.devtunnels.ms/map/generate/", {
+    //     size: 50,
+    //     seed: 42067,
+    //     seedCount: 6,
+    //     iterations: 10
+    // });
+
+    const response = await axios.get("map.json")
     return response.data.map;
 }
 
