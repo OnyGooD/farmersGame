@@ -10,7 +10,7 @@ type MapStoreType = {
 export const useMapStore = create<MapStoreType>((set) => ({
     map: [],
     selectedBuilding: null,
-    selectBuilding: (building) => { set(() => ({selectedBuilding: building})) }
+    selectBuilding: (building) => { set(() => ({ selectedBuilding: building })) }
 }))
 
 function addGrass(map: TileType[][]): TileType[][] {

@@ -1,6 +1,8 @@
 import { useState } from "react"
 import type { BuildingType, TileType } from "../types/Map"
 import { useMapStore } from "../store/useMapStore"
+import { getBuildingData } from "../types/Buildings"
+import { buildABuilding } from "../store/useResourceStore"
 
 type TilePropsType = {
   tile: TileType,
@@ -8,7 +10,7 @@ type TilePropsType = {
   colIdx: number
 }
 
-const Tile = ({tile,colIdx,rowIdx}:TilePropsType) => {
+const Tile = ({ tile, colIdx, rowIdx }: TilePropsType) => {
 
   const selectedBuilding = useMapStore((state) => state.selectedBuilding)
 
@@ -31,19 +33,25 @@ const Tile = ({tile,colIdx,rowIdx}:TilePropsType) => {
   const [building, setBuilding] = useState<BuildingType | null>(null)
 
   const canBuild = () => {
-    if(tile.building || selectedBuilding == null) return false
+    if (tile.building || selectedBuilding == null) return false
 
     switch (selectedBuilding) {
       case "farm": return tile.ground == "grass";
       case "house": return tile.ground == "grass";
       case "lumber": return tile.ground == "grass";
-      case "mine": return tile.ground == "stone";    
+      case "mine": return tile.ground == "stone";
       default: return false;
     }
   }
 
   const build = () => {
-    canBuild() ? setBuilding(selectedBuilding) : alert("Nem lehet építeni!")
+    if (!canBuild() || selectedBuilding == null) { alert("Nem lehet építeni!"); return; }
+
+    const result = buildABuilding(getBuildingData(selectedBuilding))
+    if (result) { setBuilding(selectedBuilding) } else {
+      alert("Nincs elég nyersanyag.")
+    }
+    setBuilding(selectedBuilding)
   }
 
   const hoverTile = (e: React.MouseEvent) => {
@@ -58,7 +66,7 @@ const Tile = ({tile,colIdx,rowIdx}:TilePropsType) => {
   }
 
   return (
-    <div onMouseOver={(e)=>hoverTile(e)} onMouseLeave={(e)=>leaveTile(e)} onClick={build} className={tile.ground} title={`${rowIdx}|${colIdx}`}>
+    <div onMouseOver={(e) => hoverTile(e)} onMouseLeave={(e) => leaveTile(e)} onClick={build} className={tile.ground} title={`${rowIdx}|${colIdx}`}>
       {building && buildingIcon(building)}
     </div>
   )
